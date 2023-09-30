@@ -1,0 +1,7 @@
+pytz>=2022.1 # timezone
+colorama>=0.4.4 # colored output
+rich>=13.4.2 # tables
+scapy>=2.5.0 # for network-packet-manipulation
+netfilterqueue>=1.1.0 # for access to packets matched by an iptables rule in Linux
+fake_headers>=1.0.2 # 
+psutil>=5.9.0
