@@ -265,6 +265,6 @@ if __name__ == '__main__':
     clear_screen() 
     multitool = MULTITOOL(
         timezone=args.timezone,
-        social_engineering_login_websites_dir=args.login_websites_dir
+        social_engineering_login_websites_dir=args.fake_login_websites_dir
     )
     multitool.run()
