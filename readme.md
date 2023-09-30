@@ -4,11 +4,7 @@
 
 <h2>Table of contents</h2>
 
-- [Description](#description)
 - [Installation](#installation)
-
-
-## Description
 
 ## Installation
 
