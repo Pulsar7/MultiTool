@@ -105,9 +105,9 @@ class MULTITOOL(LOGGER):
                 'descr': "Exits the current tool/module",
                 'func': self.back
             },
-            'module help': {
-                'descr': "Shows options of the current tool/module you're using",
-                'func': self.show_module_help
+            'tool help': {
+                'descr': "Shows options of the current tool you're using",
+                'func': self.show_tool_help
             }
         }
         self.prompt_args:str = ""
@@ -120,7 +120,7 @@ class MULTITOOL(LOGGER):
         if len(self.prompt_args) > 0:
             self.prompt_args = ""
         else:
-            self.error("You're not using any tool/module!")
+            self.error("You're not using any tool!")
     
     def exit(self) -> None:
         self.running = False
@@ -148,14 +148,14 @@ class MULTITOOL(LOGGER):
         print('\n'.join(centered_lines)+"\n\n")
         
     def show_tools(self) -> None:
-        self.print_help(commands=self.modules,title="Available Tools/Modules",
-            column1="Tool/Module Name")
+        self.print_help(commands=self.modules,title="Available Tools",
+            column1="Tool-Name")
         
     def use(self,tool_name:str) -> None:
         if tool_name in self.available_tools:
             self.prompt_args = Fore.WHITE+"/"+Fore.RED+tool_name.upper()+Fore.WHITE
         else:
-            self.error("Couldn't use tool/module: Invalid tool-name!")
+            self.error("Couldn't use tool: Invalid tool-name!")
     
     def show_network_interfaces(self) -> None:
         self.print_network_ifaces(network_interfaces = psutil.net_if_addrs())
@@ -163,13 +163,13 @@ class MULTITOOL(LOGGER):
     def show_help(self) -> None:
         self.print_help(commands=self.commands)
         
-    def show_module_help(self) -> None:
+    def show_tool_help(self) -> None:
         if len(self.prompt_args) > 0:
             current_module:str = self.prompt_args.split("/")[1].strip().lower()
             current_module = ''.join(re.split(re.compile(r'\x1b\[[0-9;]*[mK]'), current_module))
-            self.print_help(commands=self.modules[current_module]['commands'],title="Module/Tool Help")
+            self.print_help(commands=self.modules[current_module]['commands'],title="Tool Help")
         else:
-            self.error("In order to show available commands from a specific module/tool, you have to use one.")
+            self.error("In order to show available commands from a specific tool, you have to use one.")
 
     def check_user_input(self,commands:dict,user_input:str) -> bool:
         valid_command:bool = False
